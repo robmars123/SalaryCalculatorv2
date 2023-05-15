@@ -1,4 +1,5 @@
 # SalaryCalculator
 .Net Windows Form Personal Caculator - To calculate current or target salary.
 
-![SalaryCalc - v1](https://user-images.githubusercontent.com/17890340/194789735-3280ce23-c0e2-44ae-b959-ec6577142c55.PNG)
+![image](https://github.com/robmars123/SalaryCalculatorv2/assets/17890340/87b7b3f9-48ca-4537-8f32-e4045a4468b0)
+
