@@ -425,6 +425,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Name = "App";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Salary Calculator";
             this.Load += new System.EventHandler(this.App_Load);
             this.tabControl1.ResumeLayout(false);
