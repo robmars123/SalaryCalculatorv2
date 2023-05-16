@@ -1,9 +1,12 @@
 ﻿using SalaryCalculator;
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Threading;
+using System.Reflection.Emit;
 
 namespace WindowsFormsApp1
 {
@@ -13,6 +16,11 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             compoundFreq.Text = 1.ToString();
+
+            //initialize timer
+            timer1.Start();
+            label15.Text = DateTime.Now.ToString("yyyy'-'MM'-'dd");
+            label14.Text = DateTime.Now.ToLongTimeString();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -261,6 +269,17 @@ namespace WindowsFormsApp1
         }
 
         private void credit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label14.Text = DateTime.Now.ToLongTimeString();
+            timer1.Start();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
         {
 
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.yearlyAmount = new System.Windows.Forms.TextBox();
             this.monthlyTxtBx = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,6 +63,10 @@
             this.compoundYearlyInitial = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.credit = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -216,7 +221,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(24, 34);
+            this.tabControl1.Location = new System.Drawing.Point(24, 44);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(240, 351);
@@ -243,7 +248,7 @@
             this.tabPage1.Controls.Add(this.monthlyTxtBx);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(232, 325);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Yearly";
@@ -300,10 +305,10 @@
             this.tabPage2.Controls.Add(this.compIncreasePercent);
             this.tabPage2.Controls.Add(this.compoundYearlyInitial);
             this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(232, 325);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(232, 320);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Compound";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -414,12 +419,50 @@
             this.credit.Text = "Created By: Robten";
             this.credit.Click += new System.EventHandler(this.credit_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(197, 9);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 13);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "label14";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(202, 28);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label15.Size = new System.Drawing.Size(61, 13);
+            this.label15.TabIndex = 19;
+            this.label15.Text = "1990-12-12";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(24, 13);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(85, 18);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Calculator";
+            // 
             // App
             // 
             this.AcceptButton = this.CalcBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(287, 460);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.credit);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label7);
@@ -474,6 +517,10 @@
         private System.Windows.Forms.TextBox compoundYearlyInitial;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label credit;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }
 
