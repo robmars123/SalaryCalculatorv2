@@ -1,12 +1,7 @@
-﻿using SalaryCalculator;
-using System;
+﻿using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using System.Threading;
-using System.Reflection.Emit;
 
 namespace WindowsFormsApp1
 {
@@ -22,7 +17,6 @@ namespace WindowsFormsApp1
             label15.Text = DateTime.Now.ToString("yyyy'-'MM'-'dd");
             label14.Text = DateTime.Now.ToLongTimeString();
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -56,10 +50,11 @@ namespace WindowsFormsApp1
 
         private void btnCalc(object sender, EventArgs e)
         {
+            //annualy input
+            decimal originalInput = 0;
+
             try
             {
-                //annualy input
-                decimal originalInput = 0;
                 errorMsg.Text = "";
 
                 if (string.IsNullOrEmpty(yearlyAmount.Text) || yearlyAmount.Text == "")
@@ -70,39 +65,8 @@ namespace WindowsFormsApp1
                     errorMsg.Text = "Required " + yearlyAmount.Name;
 
                 originalInput = Convert.ToDecimal(yearlyAmount.Text);
-                decimal tax = 0.0M;
-                decimal percentIncreaseAmount = 0.0M;
-                decimal monthly = 0.0M, weekly = 0.0M;
-                decimal hourly = 0.0M;
-                decimal yearly = 0.0M;
 
-                //total deductions in tax %
-                decimal totalDeduction = 0;
-                if (!string.IsNullOrEmpty(taxTxtBx.Text))
-                {
-                    tax = Convert.ToDecimal(taxTxtBx.Text) / 100;
-                    totalDeduction = originalInput * tax;
-                };
-                yearly = originalInput - totalDeduction;
-
-                //percent increase
-                decimal totalIncrease = 0;
-                if (!string.IsNullOrEmpty(percentIncrease.Text) && percentIncrease.Text != "0")
-                {
-                    percentIncreaseAmount = (originalInput * Convert.ToDecimal(percentIncrease.Text)) / 100;
-                }
-                totalIncrease = originalInput + percentIncreaseAmount;
-
-                //new increase
-                totalIncreaseYearly.Text = String.Format("{0:C}", totalIncrease);
-                //monthly
-                monthlyTxtBx.Text = String.Format("{0:C}", (percentIncreaseAmount + yearly) / 12);
-                //biweekly
-                biWeeklyTxtBx.Text = String.Format("{0:C}", (percentIncreaseAmount + yearly) / 26);
-                //hourly
-                hourlyTxtbx.Text = String.Format("{0:C}", (percentIncreaseAmount + yearly) / (52 * 40));
-                //difference
-                differenceAmount.Text = String.Format("{0:C}", (totalIncrease - originalInput));
+                Calculate(originalInput);
             }
             catch (Exception ex)
             {
@@ -110,7 +74,66 @@ namespace WindowsFormsApp1
             }
 
         }
+        public void Calculate(decimal originalInput)
+        {
+            decimal tax = 0.0M;
+            decimal percentIncreaseAmount = 0.0M;
+            decimal monthly = 0.0M, weekly = 0.0M;
+            decimal hourly = 0.0M;
+            decimal yearly = 0.0M;
 
+            //total deductions in tax %
+            decimal totalDeduction = 0;
+            if (!string.IsNullOrEmpty(taxTxtBx.Text))
+            {
+                tax = Convert.ToDecimal(taxTxtBx.Text) / 100;
+                totalDeduction = originalInput * tax;
+            };
+            yearly = originalInput - totalDeduction;
+
+            //percent increase
+            decimal totalIncrease = 0;
+            if (!string.IsNullOrEmpty(percentIncrease.Text) && percentIncrease.Text != "0")
+            {
+                percentIncreaseAmount = (originalInput * Convert.ToDecimal(percentIncrease.Text)) / 100;
+            }
+            totalIncrease = originalInput + percentIncreaseAmount;
+
+            //new increase
+            totalIncreaseYearly.Text = String.Format("{0:C}", totalIncrease);
+            //monthly
+            monthlyTxtBx.Text = CalculateMonthlyWeeklyHourly("monthly", percentIncreaseAmount, yearly);
+            //biweekly
+            biWeeklyTxtBx.Text = CalculateMonthlyWeeklyHourly("biweekly", percentIncreaseAmount, yearly);
+            //biweekly
+            weeklyTxtBx.Text = CalculateMonthlyWeeklyHourly("weekly", percentIncreaseAmount, yearly);
+            //hourly
+            hourlyTxtbx.Text = CalculateMonthlyWeeklyHourly("hourly", percentIncreaseAmount, yearly);
+            //difference
+            differenceAmount.Text = String.Format("{0:C}", (totalIncrease - originalInput));
+        }
+
+        public string CalculateMonthlyWeeklyHourly(string type, decimal percentIncreaseAmount, decimal yearly)
+        {
+            if (type == "monthly")
+            {
+                return String.Format("{0:C}", (percentIncreaseAmount + yearly) / 12);
+            }
+            else if (type == "biweekly")
+            {
+                return String.Format("{0:C}", (percentIncreaseAmount + yearly) / 26);
+            }
+            else if (type == "weekly")
+            {
+                return String.Format("{0:C}", ((percentIncreaseAmount + yearly) / 26) / 2);
+            }
+            else if (type == "hourly")
+            {
+                return String.Format("{0:C}", (percentIncreaseAmount + yearly) / (52 * 40));
+            }
+            else
+                return "0";
+        }
         private void btnCalc(object sender, KeyEventArgs e)
         {
 
@@ -123,7 +146,7 @@ namespace WindowsFormsApp1
 
         private void validateTxtbox<T>(T item)
         {
-            TextBox txtBx =  this.Controls.Find(item.ToString(), true).FirstOrDefault() as TextBox;
+            TextBox txtBx = this.Controls.Find(item.ToString(), true).FirstOrDefault() as TextBox;
             //if (string.IsNullOrEmpty(txtBx.Text.Trim()) || txtBx.Text.Trim() == "")
             //{
             //    txtBx.Text = "0";
@@ -280,6 +303,26 @@ namespace WindowsFormsApp1
         }
 
         private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hourlyTxtbx_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
